@@ -7,13 +7,13 @@ services:
     command:
     - --loglevel warning
     volumes:
-    - redis-data:/var/lib/redis:Z
+    - /temp/docker/gitlab/redis-data:/var/lib/redis:Z
 
   postgresql:
     restart: always
     image: sameersbn/postgresql:11-20200524
     volumes:
-    - postgresql-data:/var/lib/postgresql:Z
+    - /temp/docker/gitlab/postgresql-data:/var/lib/postgresql:Z
     environment:
     - DB_USER=gitlab
     - DB_PASS=password
@@ -27,10 +27,10 @@ services:
     - redis
     - postgresql
     ports:
-    - "10080:80"
-    - "10022:22"
+    - "13800:80"
+    - "13822:22"
     volumes:
-    - gitlab-data:/home/git/data:Z
+    - /temp/docker/gitlab/gitlab:/home/git/data:Z
     healthcheck:
       test: ["CMD", "/usr/local/sbin/healthcheck"]
       interval: 5m
@@ -56,16 +56,16 @@ services:
     - GITLAB_HTTPS=false
     - SSL_SELF_SIGNED=false
 
-    - GITLAB_HOST=localhost
-    - GITLAB_PORT=10080
-    - GITLAB_SSH_PORT=10022
+    - GITLAB_HOST=47.94.226.84
+    - GITLAB_PORT=13800
+    - GITLAB_SSH_PORT=13822
     - GITLAB_RELATIVE_URL_ROOT=
     - GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string
     - GITLAB_SECRETS_SECRET_KEY_BASE=long-and-random-alphanumeric-string
     - GITLAB_SECRETS_OTP_KEY_BASE=long-and-random-alphanumeric-string
 
-    - GITLAB_ROOT_PASSWORD=
-    - GITLAB_ROOT_EMAIL=
+    - GITLAB_ROOT_PASSWORD=12345678
+    - GITLAB_ROOT_EMAIL=wangjiankang_wjk@qq.com
 
     - GITLAB_NOTIFY_ON_BROKEN_BUILDS=true
     - GITLAB_NOTIFY_PUSHER=false
