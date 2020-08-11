@@ -30,7 +30,7 @@ services:
     - "13800:80"
     - "13822:22"
     volumes:
-    - /home/gitlab/gitlab/gitlab:/home/git/data:Z
+    - /home/gitlab/gitlab/gitlab-data:/home/git/data:Z
     healthcheck:
       test: ["CMD", "/usr/local/sbin/healthcheck"]
       interval: 5m
